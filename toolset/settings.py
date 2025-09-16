@@ -19,6 +19,7 @@ def OverrideColors(colors:list[str]):
     except FileNotFoundError:
         print("Settings file not found. Using default colors.")
 
+
 def LoadSettings():
     try:
         with open("settings.json", "r") as f:
