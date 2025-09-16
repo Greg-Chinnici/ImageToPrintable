@@ -28,3 +28,9 @@ def LoadSettings():
     except FileNotFoundError:
         print("Settings file not found.")
         return None
+
+def LoadColors():
+    settings = LoadSettings()
+    if settings and "colors" in settings:
+        return settings["colors"]
+    return None
