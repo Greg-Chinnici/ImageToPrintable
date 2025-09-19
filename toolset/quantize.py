@@ -11,7 +11,11 @@ class Quantizer:
     
 
     # returns a 2D array of color hex strings
-    def quantize_image(self,image_path):
+    def quantize_image(self,image_path,output_path=None):
+        if image_path is None or not os.path.isfile(image_path):
+            print("Invalid image path:", image_path)
+            return None
+        
         # use nearest LAB Space (need to convert target colors too)
         lab_colors: list[float] = []
         for c in self.colors:
@@ -31,18 +35,19 @@ class Quantizer:
         H, W = rgb_array.shape[:2]
         
         lab_pixels = [self.rgb_to_lab((r, g, b)) for r, g, b in rgb_flat]
-        #! QUANTIZATION HERE
+
+        #! QUANTIZATION HERE, both colors are in LAB space
         indices = pairwise_distances_argmin(lab_pixels, lab_palette)  
         indices_image = indices.reshape(H, W)
 
-        quantized_lab_flat = lab_palette[indices]
-        quantized_lab = quantized_lab_flat.reshape(H, W, 3)
+        #quantized_lab_flat = lab_palette[indices]
+        #quantized_lab = quantized_lab_flat.reshape(H, W, 3)
 
-        print(lab_palette)
-        print(rgb_array)
-        print(lab_pixels)
-        print(quantized_lab)
-        print(indices_image)
+        #print(lab_palette)
+        #print(rgb_array)
+        #print(lab_pixels)
+        #print(quantized_lab)
+        #print(indices_image)
         
         output = Image.new('RGB', (W, H))
         output_pixels = output.load()
@@ -52,10 +57,13 @@ class Quantizer:
                 hex_color = self.colors[color_index]
                 rgb_color = tuple(self.hex_to_rgb(hex_color))
                 output_pixels[x, y] = rgb_color
-        output_path = os.path.splitext(image_path)[0] + "_quantized.png"
-        output.save(output_path)
         
-        return [ [self.colors[c] for c in row] for row in indices_image ]
+        if output_path is None:
+            output_path = os.path.splitext(image_path)[0] + "_quantized.png"
+
+        output.save(output_path)
+
+        return output_path
         
     
     def hex_to_rgb(self, hex_color:str) -> tuple[int,int,int]:

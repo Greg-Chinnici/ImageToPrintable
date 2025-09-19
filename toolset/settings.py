@@ -2,7 +2,7 @@ import json
 
 def CreateDefaults():
     defaults = {
-        "colors": ["#FFFFFF", "#DDDDDD", "#BBBBBB" , "#888888","#666666" , "#444444", "#222222", "#000000"],
+        "colors": ["#FFFFFF", "#BBBBBB" , "#888888","#666666" , "#444444", "#000000"],
     }
 
     with open("settings.json", "w") as f:
