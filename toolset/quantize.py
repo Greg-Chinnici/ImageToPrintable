@@ -1,3 +1,8 @@
+import numpy as np
+from PIL import Image
+import os
+from sklearn.metrics import pairwise_distances_argmin
+
 
 
 class Quantizer:
@@ -5,9 +10,10 @@ class Quantizer:
         self.colors = color_list
     
 
-    def quantize_image(self,input_path):
+    # returns a 2D array of color hex strings
+    def quantize_image(self,image_path):
         # use nearest LAB Space (need to convert target colors too)
-        lab_colors = []
+        lab_colors: list[float] = []
         for c in self.colors:
             if not c.startswith("#") or len(c) != 7:
                 print("Invalid color in settings:", c)
@@ -16,10 +22,41 @@ class Quantizer:
             lab = self.rgb_to_lab(rgb)
             lab_colors.append(lab)
             print(f"Color {c} -> RGB {rgb} -> LAB {lab}")
-        self.colors = lab_colors
-        # for each pixel in image, convert to LAB and find nearest color
-        # then copy that close color into array at same pixel position
-        # final image will be of same resolution but only use the colors in settings
+        
+
+        lab_palette = np.array(lab_colors, dtype=np.float32)
+        img = Image.open(image_path).convert('RGB')
+        rgb_array = np.array(img, dtype=np.float32) # shape: (H, W, 3)
+        rgb_flat = rgb_array.reshape(-1, 3)
+        H, W = rgb_array.shape[:2]
+        
+        lab_pixels = [self.rgb_to_lab((r, g, b)) for r, g, b in rgb_flat]
+        #! QUANTIZATION HERE
+        indices = pairwise_distances_argmin(lab_pixels, lab_palette)  
+        indices_image = indices.reshape(H, W)
+
+        quantized_lab_flat = lab_palette[indices]
+        quantized_lab = quantized_lab_flat.reshape(H, W, 3)
+
+        print(lab_palette)
+        print(rgb_array)
+        print(lab_pixels)
+        print(quantized_lab)
+        print(indices_image)
+        
+        output = Image.new('RGB', (W, H))
+        output_pixels = output.load()
+        for y in range(H):
+            for x in range(W):
+                color_index = indices_image[y, x]
+                hex_color = self.colors[color_index]
+                rgb_color = tuple(self.hex_to_rgb(hex_color))
+                output_pixels[x, y] = rgb_color
+        output_path = os.path.splitext(image_path)[0] + "_quantized.png"
+        output.save(output_path)
+        
+        return [ [self.colors[c] for c in row] for row in indices_image ]
+        
     
     def hex_to_rgb(self, hex_color:str) -> tuple[int,int,int]:
         hex_color = hex_color.lstrip('#')

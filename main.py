@@ -9,11 +9,12 @@ def main():
     #! setup
     CreateDefaults()
 
-    inputstring = "#FF00ff,0 255 0 , 0 0 0 , 255 255 255 , #ffaabb , #abcabc , 0.1 0 0.2, 0.8 0.7 0.9" # from argparse eventually
+    inputstring = "#000000 , #FFFFFF, #e88504 , #888888" # from argparse eventually
+    inputstring = ''
     chex = CoalesseColorsToHex(inputstring.split(","))
     print(chex)
 
-    OverrideColors(chex)
+    if len(chex) > 0: OverrideColors(chex)
 
     settings = LoadSettings()
     if not settings: 
@@ -21,7 +22,9 @@ def main():
         return
 
     #! operations
-    q = Quantizer(LoadColors())
+    q = Quantizer(settings["colors"])
+    q.quantize_image(image_path="test.png")
+
 
     #! cleanup
     try: os.remove("settings.json")

@@ -2,7 +2,7 @@ import json
 
 def CreateDefaults():
     defaults = {
-        "colors": ["#FFFFFF", "#FF0000", "#00FF00", "#0000FF", "#000000"],
+        "colors": ["#FFFFFF", "#DDDDDD", "#BBBBBB" , "#888888","#666666" , "#444444", "#222222", "#000000"],
     }
 
     with open("settings.json", "w") as f:
@@ -28,7 +28,7 @@ def LoadSettings():
     except FileNotFoundError:
         print("Settings file not found.")
         return None
-
+    
 def LoadColors():
     settings = LoadSettings()
     if settings and "colors" in settings:
