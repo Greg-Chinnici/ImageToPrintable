@@ -14,10 +14,10 @@ Inspo: https://www.youtube.com/watch?v=FKd9X-wl8Rg
     <td align="center">LAB with Pallete</td>
   </tr>
 </table>
-<table>
+<table align="center">
   <tr>
-    <td><img src="examples/comicbook.png" width="300"/></td>
-    <td><img src="examples/spiderman.png" width="300"/></td>
+    <td><img src="examples/comicbook.png" height="400"/></td>
+    <td><img src="examples/spiderman.png" height="400"/></td>
   </tr>
   <tr>
     <td align="center">Original Image</td>
