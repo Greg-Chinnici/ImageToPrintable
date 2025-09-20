@@ -17,6 +17,7 @@ Inspo: https://www.youtube.com/watch?v=FKd9X-wl8Rg
 
 Steps:
 - [x] quantize image using LAB color space
+- [ ] bitmap per color 
 - [ ] vectorize new image
 - [ ] create instuctions for user to use in Fusion
 - [ ] manually position in fusion then export to print
