@@ -17,8 +17,11 @@ Inspo: https://www.youtube.com/watch?v=FKd9X-wl8Rg
 
 Steps:
 - [x] quantize image using LAB color space
-- [ ] bitmap per color 
+- [x] bitmap per color 
 - [ ] vectorize new image
+  - extrude bitmap by color luminance
+  - extrude svg by color
+  - boolean mask for more detail / coverage
 - [ ] create instuctions for user to use in Fusion
 - [ ] manually position in fusion then export to print
 - [ ] create color swaps at differtn layers in prusa slicer

@@ -20,10 +20,8 @@ class Vectorizer:
             self._color_bitmap(img, color, width , height)
 
         
-    def vectorize_image(self, image_path, output_path=None) -> str:
-        if image_path is None or not os.path.isfile(image_path):
-            print("Invalid image path:", image_path)
-            return None
+    def vectorize_image(self, output_path=None) -> str:
+        pass
         
     
     
