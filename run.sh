@@ -3,6 +3,6 @@
 #uv run main.py -i test.png -p '#ffffff , #000000 , 200 130 60 , #444444' -o test2_q.png --AddPalette --Image
 #uv run main.py -i test.png -p '#ffffff , #000000 , 200 130 60 ,#333333' -o test_q_pal.png --AddPalette --Image
 #uv run main.py -i test.png -p '#ffffff , #000000 , 200 130 60 ,#333333' -o test_q.png --Image
-uv run main.py -i test.png -p '#ffffff , #000000 , 200 130 60 ,#333333' -o test_q.png
-
+#uv run main.py -i test.png -p '#ffffff , #000000 , 200 130 60 ,#333333' -o test_q.png
+uv run main.py -i comicbook.png  -o spiderman.png --Image --AddPalette
 #rm $(grep 'quantized.png')

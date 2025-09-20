@@ -14,6 +14,16 @@ Inspo: https://www.youtube.com/watch?v=FKd9X-wl8Rg
     <td align="center">LAB with Pallete</td>
   </tr>
 </table>
+<table>
+  <tr>
+    <td><img src="examples/comicbook.png" width="300"/></td>
+    <td><img src="examples/spiderman.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td align="center">Original Image</td>
+    <td align="center">LAB with Grayscale Pallete</td>
+  </tr>
+</table>
 
 Steps:
 - [x] quantize image using LAB color space

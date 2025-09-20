@@ -72,7 +72,7 @@ class Quantizer:
         
         img = Image.open(image_path).convert('RGB')
         W, H = img.size
-        palette_height = pallete_height_pixels if  pallete_height_pixels else H // 7
+        palette_height = pallete_height_pixels if pallete_height_pixels else H // 7
 
         if W < len(self.colors) * palette_height:
             print("Image too small for palette overlay.")

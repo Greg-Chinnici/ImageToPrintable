@@ -12,7 +12,7 @@ class Args:
         self.args = self.parser.parse_args()
 
     def _add_arguments(self):
-        self.parser.add_argument('-p', '--palette', type=str, help='Color palette string in hex (separated by commas)')
+        self.parser.add_argument('-p', '--palette', type=str, help='Color palette (separated by commas), defaults to grayscale')
         self.parser.add_argument('-o', '--output', type=str, help='Output file path')
         self.parser.add_argument('-i', '--input', type=str, help='Input file path')
         self.parser.add_argument('--Image', action='store_true', help='Flag for only image quantization')
@@ -44,7 +44,7 @@ def main():
     quantized_image_path = quantizer.quantize_image(image_path=args.input, output_path=args.output)
 
     if args.AddPalette and quantized_image_path:
-        quantizer.color_palette_on_image(image_path=quantized_image_path, output_path=quantized_image_path)
+        quantizer.color_palette_on_image(image_path=quantized_image_path, output_path=quantized_image_path, pallete_height_pixels=20)
 
     if args.Image:
         cleanup()
