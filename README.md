@@ -40,3 +40,11 @@ Steps:
 1. The cli will take in an image file and a list of colors
 - supports hex , and rgb
 2. uses the euclidian distance of LAB colors to find the closest similar color
+
+
+
+### Env Setup
+
+1. `uv pip sync uv.lock`
+2. drop in any png to the project root
+3. modify or use `run.sh` as an example
