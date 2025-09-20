@@ -1,9 +1,11 @@
 import sys, os , argparse, subprocess
 
 from toolset.settings import CreateDefaults, OverrideColors, LoadSettings, LoadColors
-from toolset.utils import CoalesseColorsToHex
+from toolset.utils import CoalesseColorsToHex, GenerateGrayscalePaletteString
 from toolset.quantize import Quantizer
 from toolset.vectorize import Vectorizer
+from toolset.extrude import Extruder
+
 
 class Args:
     def __init__(self):
@@ -17,6 +19,7 @@ class Args:
         self.parser.add_argument('-i', '--input', type=str, help='Input file path')
         self.parser.add_argument('--Image', action='store_true', help='Flag for only image quantization')
         self.parser.add_argument('--AddPalette' , action='store_true', help='Put pallete on image, usually used with --Image')
+        self.parser.add_argument('--Extrude' , choices=['bitmap' , 'svg' , 'composite'] , help='Extrude mode')
     def get(self):
         return self.args
 
@@ -50,8 +53,14 @@ def main():
         cleanup()
         return
 
+    
     # now do the svg conversion on the output of quatization
     v = Vectorizer(quantized_image_path, settings["colors"])
+    if args.Extrude:
+        extruder = Extruder(bitmaps_folder="bitmaps", output_folder="output")
+        if args.Extrude == "bitmap":
+            pass
+
 
     cleanup()
 
