@@ -1,5 +1,5 @@
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw
 import os
 from sklearn.metrics import pairwise_distances_argmin
 
@@ -8,6 +8,7 @@ from sklearn.metrics import pairwise_distances_argmin
 class Quantizer:
     def __init__(self, color_list, settings_file="settings.json"):
         self.colors = color_list
+        
     
 
     # returns a 2D array of color hex strings
@@ -65,7 +66,37 @@ class Quantizer:
 
         return output_path
         
-    
+    def color_palette_on_image(self,image_path,output_path=None):
+        if image_path is None or not os.path.isfile(image_path):
+            print("Invalid image path:", image_path)
+            return None
+        
+        img = Image.open(image_path).convert('RGB')
+        W, H = img.size
+        palette_height = H // 7
+
+        if W < len(self.colors) * palette_height:
+            print("Image too small for palette overlay.")
+            return None
+        
+        new_height = H + palette_height
+        output = Image.new('RGB', (W, new_height), (255, 255, 255))
+        output.paste(img, (0, 0))
+
+        colors_rgb = [tuple(self.hex_to_rgb(c)) for c in self.colors]
+        color_count = len(colors_rgb)
+        cell_width = W // color_count
+        draw = ImageDraw.Draw(output)
+        for i, color in enumerate(colors_rgb):
+            x0 = i * cell_width
+            x1 = x0 + cell_width
+
+            draw.rectangle([x0, H, x1, new_height], fill=color)
+
+        output.save(output_path)
+        return output_path
+
+
     def hex_to_rgb(self, hex_color:str) -> tuple[int,int,int]:
         hex_color = hex_color.lstrip('#')
         return [int(hex_color[i:i+2], 16) for i in (0, 2, 4)]

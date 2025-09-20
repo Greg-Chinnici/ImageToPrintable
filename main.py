@@ -41,6 +41,7 @@ def main():
     #! operations
     quantizer = Quantizer(settings["colors"])
     quantized_image_path = quantizer.quantize_image(image_path=args.input, output_path=args.output)
+    quantizer.color_palette_on_image(image_path=quantized_image_path, output_path=quantized_image_path)
 
     if args.Image:
         cleanup()
