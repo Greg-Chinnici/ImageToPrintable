@@ -3,13 +3,16 @@ from PIL import Image
 
 
 class Vectorizer:
-    def __init__(self):
-        pass
+    def __init__(self, image_path , hex_colors):
+        self.image_path = image_path
+        self.hex_colors = hex_colors
+        
+        self.create_bitmaps()
     
-    def create_bitmaps(self, image_path , colors):
-        img = Image.open(image_path).convert('RGB')
+    def create_bitmaps(self):
+        img = Image.open(self.image_path).convert('RGB')
         width, height = img.size
-        colors_rgb = [tuple(int((color.split('#')[1])[i:i+2], 16) for i in (0, 2, 4)) for color in colors]
+        colors_rgb = [tuple(int((color.split('#')[1])[i:i+2], 16) for i in (0, 2, 4)) for color in self.hex_colors]
         
     
         os.makedirs("bitmaps", exist_ok=True)
@@ -22,8 +25,6 @@ class Vectorizer:
             print("Invalid image path:", image_path)
             return None
         
-        # create bitmap for each color
-        # outline of each bitmap to svg path, most likely multi layered
     
     
     def _color_bitmap(self, image , color ,width , height, preserve_color=False):

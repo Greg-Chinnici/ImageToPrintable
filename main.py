@@ -51,9 +51,7 @@ def main():
         return
 
     # now do the svg conversion on the output of quatization
-    print("VECTOR")
-    v = Vectorizer()
-    v.create_bitmaps(quantized_image_path, settings["colors"])
+    v = Vectorizer(quantized_image_path, settings["colors"])
 
     cleanup()
 
