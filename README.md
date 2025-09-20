@@ -21,3 +21,8 @@ Steps:
 - [ ] create instuctions for user to use in Fusion
 - [ ] manually position in fusion then export to print
 - [ ] create color swaps at differtn layers in prusa slicer
+
+## How?
+1. The cli will take in an image file and a list of colors
+- supports hex , and rgb
+2. uses the euclidian distance of LAB colors to find the closest similar color
