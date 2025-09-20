@@ -11,8 +11,7 @@ class Quantizer:
         
     
 
-    # returns a 2D array of color hex strings
-    def quantize_image(self,image_path,output_path=None):
+    def quantize_image(self,image_path,output_path=None)->str:
         if image_path is None or not os.path.isfile(image_path):
             print("Invalid image path:", image_path)
             return None
@@ -26,7 +25,7 @@ class Quantizer:
             rgb = self.hex_to_rgb(c)
             lab = self.rgb_to_lab(rgb)
             lab_colors.append(lab)
-            print(f"Color {c} -> RGB {rgb} -> LAB {lab}")
+            #print(f"Color {c} -> RGB {rgb} -> LAB {lab}")
         
 
         lab_palette = np.array(lab_colors, dtype=np.float32)
@@ -63,7 +62,7 @@ class Quantizer:
             output_path = os.path.splitext(image_path)[0] + "_quantized.png"
 
         output.save(output_path)
-
+        print(f"Saved Quantized image to {output_path}")
         return output_path
         
     def color_palette_on_image(self,image_path,output_path=None):
@@ -94,6 +93,7 @@ class Quantizer:
             draw.rectangle([x0, H, x1, new_height], fill=color)
 
         output.save(output_path)
+        print(f"Saved image with palette to {output_path}")
         return output_path
 
 

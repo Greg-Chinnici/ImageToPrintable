@@ -14,22 +14,22 @@ class Args:
         self.parser.add_argument('-p', '--palette', type=str, help='Color palette string in hex (separated by commas)')
         self.parser.add_argument('-o', '--output', type=str, help='Output file path')
         self.parser.add_argument('-i', '--input', type=str, help='Input file path')
-        self.parser.add_argument('--Image', action='store_true', help='Flag for only image processing')
-
+        self.parser.add_argument('--Image', action='store_true', help='Flag for only image quantization')
+        self.parser.add_argument('--AddPalette' , action='store_true', help='Put pallete on image, usually used with --Image')
     def get(self):
         return self.args
 
 def main():
     print("Hello from imagetoprintable!")
     args = Args().get()
-    print(args)
+    #print(args)
 
     #! setup
     CreateDefaults()
 
     palettechoice = args.palette if args.palette else ""
     chex = CoalesseColorsToHex(palettechoice.split(","))
-    print(chex)
+    #print(chex)
 
     if len(chex) > 0: OverrideColors(chex)
 
@@ -41,7 +41,9 @@ def main():
     #! operations
     quantizer = Quantizer(settings["colors"])
     quantized_image_path = quantizer.quantize_image(image_path=args.input, output_path=args.output)
-    quantizer.color_palette_on_image(image_path=quantized_image_path, output_path=quantized_image_path)
+
+    if args.AddPalette and quantized_image_path:
+        quantizer.color_palette_on_image(image_path=quantized_image_path, output_path=quantized_image_path)
 
     if args.Image:
         cleanup()
@@ -54,9 +56,9 @@ def main():
 
 def cleanup():
     try: os.remove("settings.json")
-    except: print("Failed to remove settings.json")
+    except: pass #print("Failed to remove settings.json")
     try: os.remove(".working.json")
-    except: print("Failed to remove .working.json")
+    except: pass #print("Failed to remove .working.json")
 
 if __name__ == "__main__":
     main()
