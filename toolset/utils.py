@@ -2,6 +2,16 @@
 def RGBtoHex(rgb:list) -> str:
     return '#{:02x}{:02x}{:02x}'.format(rgb[0], rgb[1], rgb[2])
 
+def GenerateGrayscalePaletteString(steps:int=8) -> str:
+    if steps < 2: steps = 2
+    if steps > 256: steps = 256
+    step_size = 255 // (steps - 1)
+    colors = []
+    for i in range(steps):
+        gray_value = i * step_size
+        colors.append(RGBtoHex([gray_value, gray_value, gray_value]))
+    return ','.join(colors)
+
 def CoalesseColorsToHex(color_list:list[str]) -> list:
     #! assuming the list is any color format separated by commas
     l = []
