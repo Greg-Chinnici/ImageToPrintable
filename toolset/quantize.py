@@ -65,14 +65,14 @@ class Quantizer:
         print(f"Saved Quantized image to {output_path}")
         return output_path
         
-    def color_palette_on_image(self,image_path,output_path=None):
+    def color_palette_on_image(self,image_path,output_path=None, pallete_height_pixels=None)->str:
         if image_path is None or not os.path.isfile(image_path):
             print("Invalid image path:", image_path)
             return None
         
         img = Image.open(image_path).convert('RGB')
         W, H = img.size
-        palette_height = H // 7
+        palette_height = pallete_height_pixels if  pallete_height_pixels else H // 7
 
         if W < len(self.colors) * palette_height:
             print("Image too small for palette overlay.")
