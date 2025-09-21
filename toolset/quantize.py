@@ -88,7 +88,7 @@ class Quantizer:
         draw = ImageDraw.Draw(output)
         for i, color in enumerate(colors_rgb):
             x0 = i * cell_width
-            x1 = x0 + cell_width
+            x1 = (x0 + cell_width) if (i < color_count - 1) else W
 
             draw.rectangle([x0, H, x1, new_height], fill=color)
 

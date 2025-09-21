@@ -2,7 +2,7 @@
 This will be a tool for turning a single image into a 3d printable poster
 Inspo: https://www.youtube.com/watch?v=FKd9X-wl8Rg
 
-<table>
+<table align="center">
   <tr>
     <td><img src="examples/test.png" width="300"/></td>
     <td><img src="examples/test_q.png" width="300"/></td>
@@ -30,7 +30,7 @@ Steps:
 - [x] bitmap per color 
 - [ ] vectorize new image
   - extrude bitmap by color luminance
-  - extrude svg by color
+  - spererate svg by color
   - boolean mask for more detail / coverage
 - [ ] create instuctions for user to use in Fusion
 - [ ] manually position in fusion then export to print
@@ -48,3 +48,5 @@ Steps:
 1. `uv pip sync uv.lock`
 2. drop in any png to the project root
 3. modify or use `run.sh` as an example
+
+- I advise not going over 512x512 with more than 6 colors in palette (if there is lots of noise)
