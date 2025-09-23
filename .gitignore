@@ -14,3 +14,4 @@ wheels/
 !examples/*.png
 
 *.stl
+intructions.md

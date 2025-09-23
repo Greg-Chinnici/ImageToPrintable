@@ -17,7 +17,9 @@ class Extruder:
             f.writelines([
                 "# Guide" , "This will tell you what heights to put the filament stops", "## Layers"
             ])
-
+    def _markdown_color(self, rgb_color):
+        return f"<span style=\"display:inline-block; width:16px; height:16px; background-color:rgb({rgb_color[0]}, {rgb_color[1]}, {rgb_color[2]}); border:1px solid #000;\"></span>"
+    
     # will create a stl for for each layer/bitmap file 
     def extrude_with_bitmap(self):
         bitmap_files = [f for f in os.listdir(self.bitmaps_folder) if f.endswith('.png')]
@@ -60,7 +62,7 @@ class Extruder:
                 print(f"Exported: {color_to_file[rgb_color]}.stl")
                 with open(self.instructions , "a") as f:
                     f.writelines(
-                        [f"At Layer {i}" , f"swap to the filament closest to {rgb_color}" , f"At height {i*self.layer_height_mm}"]
+                        [f"{i}. At Layer {i}" , f"- swap to the filament closest to {rgb_color} {self._markdown_color(rgb_color)}" , f"- At height {i*self.layer_height_mm} \n"]
                     )
         
     
