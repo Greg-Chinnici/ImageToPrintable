@@ -32,10 +32,9 @@ Steps:
   - extrude bitmap by color luminance
   - spererate svg by color
   - boolean mask for more detail / coverage
-- [ ] create instuctions for user to use in Fusion
-- [ ] manually position in fusion then export to print
+- [ ] auto size fitting for configured print size
 - [ ] create color swaps at differtn layers in prusa slicer
-
+- [ ] stl optimization, instead of creating each voxel
 *crazy final boss goal: full integration into a unity scene for live viewing*
 ## How?
 1. The cli will take in an image file and a list of colors

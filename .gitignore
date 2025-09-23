@@ -9,6 +9,8 @@ wheels/
 # Virtual environments
 .venv
 
-# test images
+# test and output
 *.png
 !examples/*.png
+
+*.stl

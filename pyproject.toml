@@ -8,4 +8,5 @@ dependencies = [
     "numpy>=2.0.2",
     "pillow>=11.3.0",
     "scikit-learn>=1.6.1",
+    "trimesh>=4.8.2",
 ]
