@@ -5,7 +5,7 @@ from sklearn.metrics import pairwise_distances_argmin
 
     
 # rgb list is 3 elements of range 0-255
-def rgb_to_lab(self, rgb: tuple[int, int, int]) -> list[float]:
+def rgb_to_lab(rgb: tuple[int, int, int]) -> list[float]:
     r, g, b = [c / 255.0 for c in rgb]
     
     def gamma_expand(c):

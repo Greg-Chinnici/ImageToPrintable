@@ -22,8 +22,9 @@ class Extruder:
             rgb_color = lab_to_rgb(c)
             img_path = os.path.join(self.bitmaps_folder, color_to_file[rgb_color])
             img = Image.open(img_path)
-            
+
             # read in the bitmap and extrude it based on 'i'
+            # create a cube shape for that pixel from y= 0 to y = i * layer_height_mm
 
         pass
     
