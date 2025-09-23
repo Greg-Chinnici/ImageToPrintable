@@ -57,9 +57,10 @@ def main():
     # now do the svg conversion on the output of quatization
     v = Vectorizer(quantized_image_path, settings["colors"])
     if args.Extrude:
-        extruder = Extruder(bitmaps_folder="bitmaps", output_folder="output")
+        extruder = Extruder(bitmaps_folder="bitmaps", layer_height_mm=20)
         if args.Extrude == "bitmap":
-            pass
+            extruder.extrude_with_bitmap()
+            
 
 
     cleanup()

@@ -56,7 +56,7 @@ class Quantizer:
                 print("Invalid color in settings:", c)
                 continue
             rgb = self.hex_to_rgb(c)
-            lab = self.rgb_to_lab(rgb)
+            lab = rgb_to_lab(rgb)
             lab_colors.append(lab)
             #print(f"Color {c} -> RGB {rgb} -> LAB {lab}")
         
@@ -67,7 +67,7 @@ class Quantizer:
         rgb_flat = rgb_array.reshape(-1, 3)
         H, W = rgb_array.shape[:2]
         
-        lab_pixels = [self.rgb_to_lab((r, g, b)) for r, g, b in rgb_flat]
+        lab_pixels = [rgb_to_lab((r, g, b)) for r, g, b in rgb_flat]
 
         #! QUANTIZATION HERE, both colors are in LAB space
         indices = pairwise_distances_argmin(lab_pixels, lab_palette)  
