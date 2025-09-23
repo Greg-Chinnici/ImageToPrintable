@@ -36,6 +36,7 @@ Steps:
 - [ ] manually position in fusion then export to print
 - [ ] create color swaps at differtn layers in prusa slicer
 
+*crazy final boss goal: full integration into a unity scene for live viewing*
 ## How?
 1. The cli will take in an image file and a list of colors
 - supports hex , and rgb
