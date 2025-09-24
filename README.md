@@ -35,6 +35,7 @@ Steps:
 - [ ] auto size fitting for configured print size
 - [ ] create color swaps at differtn layers in prusa slicer
 - [ ] stl optimization, instead of creating each voxel
+- [ ] option to override the luminace sorting
 *crazy final boss goal: full integration into a unity scene for live viewing*
 ## How?
 1. The cli will take in an image file and a list of colors
