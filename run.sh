@@ -7,8 +7,8 @@
 #uv run main.py -i comicbook.png  -o spiderman.png --Image --AddPalette
 #uv run main.py -i comicbook.png  -o spiderman.png --Image --AddPalette
 
-uv run main.py -i test.png  -o bo2.png --Extrude bitmap -p '191 131 73 , #ffffff , #000000 ,51 51 51 ' 
 
+#uv run main.py -i test.png  -o bo2.png --Extrude bitmap -p '191 131 73 , #ffffff , #000000 ,51 51 51 ' 
 
-
-#rm $(grep 'quantized.png')
+uv run main.py -i album.png  -o x.png --Image -p '#000000 , #ffffff , #888888 , #ff0000  ' 
+uv run main.py -i album.png  -o xp.png --Image -p '#000000 , #ffffff , #888888 , #ff0000  ' --AddPalette 

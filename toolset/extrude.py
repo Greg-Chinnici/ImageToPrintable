@@ -53,7 +53,7 @@ class Extruder:
                 for x in range(width):
                     r, g, b, a = data[y, x]
                     if (r, g, b) == (0, 0, 0) and a > 0:
-                        voxel = make_voxel(x, y, z=0)  # Flip Y
+                        voxel = make_voxel(x, height - y, z=0)  
                         voxels.append(voxel)
 
             if voxels:
@@ -62,7 +62,7 @@ class Extruder:
                 print(f"Exported: {color_to_file[rgb_color]}.stl")
                 with open(self.instructions , "a") as f:
                     f.writelines(
-                        [f"{i}. At Layer {i}" , f"- swap to the filament closest to {rgb_color} {self._markdown_color(rgb_color)}" , f"- At height {i*self.layer_height_mm} \n"]
+                        [f"{i}. At Layer {i}" , f"- swap to the filament closest to {rgb_color} {self._markdown_color(rgb_color)}" , f"\n- At height {i*self.layer_height_mm} \n"]
                     )
         
     
